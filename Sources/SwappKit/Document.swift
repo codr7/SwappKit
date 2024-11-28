@@ -1,14 +1,14 @@
 class Document {
-    class Head: Node {
+    class Head: BasicNode {
         nonisolated(unsafe) static let Title = BasicAttribute<String>("title")
     }
 
-    let body: Node
+    let body: BasicNode
     let head: Head
-    let root = Node("html")
+    let root = BasicNode("html")
 
     init() {
         head = root.append(Head("head"))
-        body = root.append(Node("body"))
+        body = root.append(BasicNode("body"))
     }
 }

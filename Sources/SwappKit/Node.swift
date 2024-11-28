@@ -1,16 +1,16 @@
-protocol INode {
+protocol Node {
     var attributes: [Attribute:Any] {get}
-    var body: [INode] {get}
+    var body: [Node] {get}
     var html: String {get}
     var tag: String {get}
 
     subscript<T>(key: BasicAttribute<T>) -> T? {get set}
 }
 
-class Node: INode {
+class BasicNode: Node {
     let tag: String
     var attributes: [Attribute:Any] = [:]
-    var body: [INode] = []
+    var body: [Node] = []
 
     init(_ tag: String) {
         self.tag = tag
@@ -20,8 +20,9 @@ class Node: INode {
         get { if let value = attributes[key] { (value as! T) } else { nil } }
         set(value) { attributes[key] = value }
     }
-
-    func append<T>(_ node: T) -> T where T: INode {
+    
+    @discardableResult
+    func append<T>(_ node: T) -> T where T: Node {
         body.append(node)
         return node
     }

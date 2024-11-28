@@ -1,5 +1,3 @@
-//extension < Hasher?
-
 class Attribute: Equatable, Hashable {
     static func ==(_ l: Attribute, _ r: Attribute) -> Bool {
         l.name == r.name
